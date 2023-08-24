@@ -1,14 +1,13 @@
 # Required Imports
-import requests
 from zk import ZK, const
 from pyairtable import Table
-import redis
+# import redis
 
 # Redis Connection:
-redis_host = "localhost"
-redis_port = 6379
-r_handler = redis.StrictRedis(host=redis_host,port=redis_port,decode_responses=True)
-lock = r_handler.lock('my_lock')
+# redis_host = "localhost"
+# redis_port = 6379
+# r_handler = redis.StrictRedis(host=redis_host,port=redis_port,decode_responses=True)
+# lock = r_handler.lock('my_lock')
 
 # Device Connection Variables
 checkout_conn = None
@@ -32,8 +31,9 @@ def checkout_device():
         checkout_conn = checkout_instance.connect()
         checkin_conn = checkin_instance.connect()
 
-        # Getting users from device to add new users into database
+        # Getting users from checkout device to add new users into database and checkin device
         checkout_device_users = checkout_conn.get_users()
+        checkin_device_users = checkin_conn.get_users()
 
         # Getting Database users
         db_data = table.all()
@@ -72,7 +72,6 @@ def checkout_device():
                     f"User with user_id: {checkout_device_user.user_id} already exists in checkin device's database!")
 
             # Internal loop for checking every checkin user in checkout device
-            checkin_device_users = checkin_conn.get_users()
             checkin_user_exists = False
             for checkin_device_user in checkin_device_users:
                 if checkout_device_user.uid == checkin_device_user.uid:

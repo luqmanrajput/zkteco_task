@@ -20,7 +20,7 @@ table = Table(API_KEY, BASE_ID, TABLE_NAME)
 # Adding User Test
 checkin_conn = checkin_instance.connect()
 checkout_conn = checkout_instance.connect()
-# checkin_conn.set_user(uid=135, name='Test Renamed', privilege=const.USER_ADMIN, password='', group_id='', user_id='135', card=0)
+checkin_conn.set_user(uid=135, name='Test', privilege=const.USER_DEFAULT, password='', group_id='', user_id='135', card=0)
 # checkout_conn.set_user(uid=28, name='Luqmann', privilege=const.USER_DEFAULT, password='', group_id='', user_id='24', card=0)
 # checkin_conn.set_user(uid=28, name='Luqman', privilege=const.USER_ADMIN, password='', group_id='', user_id='24', card=0)
 
@@ -59,6 +59,10 @@ checkout_conn = checkout_instance.connect()
 #     print(user)
 
 # get fingers
-checkout_fingers = checkout_conn.get_templates()
-for finger in checkout_fingers:
-    print(finger)
+# checkout_fingers = checkout_conn.get_templates()
+# for finger in checkout_fingers:
+#     print(finger)
+
+att = checkin_conn.get_attendance()
+for at in att:
+    print(at)

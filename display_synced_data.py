@@ -58,9 +58,9 @@ def display_synced_data():
         for user in db_users:
             print(user)
         print("<----||---->")
-        print(f"Database fingers: {len(db_fingers)}")
-        for finger in db_fingers:
-            print(finger)
+        # print(f"Database fingers: {len(db_fingers)}")
+        # for finger in db_fingers:
+        #     print(finger)
         print("<----||---->")
         print("<----||---->")
         print(f"Checkout fingers: {len(checkout_fingers)}")
